@@ -45,7 +45,7 @@ const patchEmployee = (id, data) => {
 };
 
 // DELETE
-const deleteEmployee = (id) {
+const deleteEmployee = (id) => {
 
     const index = employees.findIndex(emp => emp.id === Number(id));
 
@@ -56,8 +56,7 @@ const deleteEmployee = (id) {
     const deletedEmployee = employees.splice(index, 1)[0];
 
     return deletedEmployee;
-}
-
+};
 module.exports = {
     getAllEmployees,
     addEmployee,
