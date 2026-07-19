@@ -9,4 +9,3 @@ router.get("/", studentController.getAllStudents);
 // GET Student By ID
 router.get("/:id", studentController.getStudentById);
 
-module.exports = router;

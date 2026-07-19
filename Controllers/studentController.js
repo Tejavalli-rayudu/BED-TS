@@ -22,7 +22,3 @@ const getStudentById = (req, res) => {
     res.status(200).json(student);
 };
 
-module.exports = {
-    getAllStudents,
-    getStudentById
-};
