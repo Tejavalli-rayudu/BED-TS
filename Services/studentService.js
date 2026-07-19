@@ -1,11 +1,27 @@
 const students = require("../students");
 
-// POST Student
-const addStudent = (student) => {
+// PUT
+const updateStudent = (id, updatedStudent) => {
+    const index = students.findIndex(student => student.id === Number(id));
 
-    students.push(student);
+    if (index === -1) {
+        return null;
+    }
 
-    return student;
+    students[index] = updatedStudent;
 
+    return students[index];
 };
 
+// PATCH
+const patchStudent = (id, data) => {
+    const student = students.find(student => student.id === Number(id));
+
+    if (!student) {
+        return null;
+    }
+
+    Object.assign(student, data);
+
+    return student;
+};

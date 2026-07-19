@@ -3,6 +3,7 @@ const router = express.Router();
 
 const studentController = require("../controllers/studentController");
 
-// POST Student
-router.post("/", studentController.addStudent);
-
+// PUT Student
+router.put("/:id", studentController.updateStudent);
+//PATCH
+router.patch("/:id", studentController.patchStudent);
