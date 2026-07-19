@@ -1,24 +1,16 @@
 const studentService = require("../services/studentService");
 
-// GET All Students
-const getAllStudents = (req, res) => {
-    const students = studentService.getAllStudents();
+// POST Student
+const addStudent = (req, res) => {
 
-    res.status(200).json(students);
-};
+    const newStudent = req.body;
 
-// GET Student By ID
-const getStudentById = (req, res) => {
-    const id = req.params.id;
+    const student = studentService.addStudent(newStudent);
 
-    const student = studentService.getStudentById(id);
+    res.status(201).json({
+        message: "Student Added Successfully",
+        data: student
+    });
 
-    if (!student) {
-        return res.status(404).json({
-            message: "Student Not Found"
-        });
-    }
-
-    res.status(200).json(student);
 };
 
