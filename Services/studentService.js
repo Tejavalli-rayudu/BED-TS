@@ -53,11 +53,22 @@ const deleteStudent = (id) => {
     return students.splice(index, 1)[0];
 };
 
+const getStudentsByQuery = (course) => {
+
+    if (course) {
+        return students.filter(student => student.course === course);
+    }
+
+    return students;
+};
+
+
 module.exports = {
     getAllStudents,
     addStudent,
     getStudentById,
     updateStudent,
     patchStudent,
-    deleteStudent
+    deleteStudent,
+    getStudentsByQuery
 };

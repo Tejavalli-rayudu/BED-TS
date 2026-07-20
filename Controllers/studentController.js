@@ -61,6 +61,24 @@ const deleteStudent = (req, res) => {
         data: student
     });
 };
+//get by Query
+const getStudentsByQuery = (req, res) => {
+
+    const { skills } = req.query;
+
+    const result = studentService.getStudentsByQuery(skills);
+
+    if (result.length === 0) {
+        return res.status(404).json({
+            message: "No students found with the given skills"
+        });
+    }
+
+    res.status(200).json({
+        message: "Students fetched successfully",
+        data: result
+    });
+};
 
 module.exports = {
     getAllStudents,
@@ -68,5 +86,6 @@ module.exports = {
     getStudentById,
     updateStudent,
     patchStudent,
-    deleteStudent
+    deleteStudent,
+    getStudentsByQuery
 };
