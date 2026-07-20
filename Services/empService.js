@@ -11,4 +11,7 @@ const getEmployeeById = (id) => {
     return employees.find(emp => emp.id === Number(id));
 };
 
-
+module.exports = {
+    getAllEmployees,
+    getEmployeeById
+}

@@ -20,3 +20,7 @@ const getEmployeeById = (req, res) => {
     res.status(200).json(employee);
 };
 
+module.exports = {
+    getAllEmployees,
+    getEmployeeById
+}

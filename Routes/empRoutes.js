@@ -6,3 +6,4 @@ const empController = require("../Controllers/empController");
 router.get("/", empController.getAllEmployees);
 router.get("/:id", empController.getEmployeeById);
 
+module.exports = router;
