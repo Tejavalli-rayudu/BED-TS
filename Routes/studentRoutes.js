@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const studentController = require("../Controllers/studentController");
+const authMiddleware =require("../middleware/authMiddleware")
 
 router.get("/", studentController.getAllStudents);
 router.post("/", studentController.addStudent);

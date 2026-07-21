@@ -5,9 +5,11 @@ app.use(express.json());
 
 const studentRoutes = require("./Routes/studentRoutes");
 const empRoutes = require("./Routes/empRoutes");
+const authRoutes = require("./Routes/authRoutes")
 
 app.use("/students", studentRoutes);
 app.use("/employees", empRoutes);
+app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => {
     res.send("Server Running Successfully");
