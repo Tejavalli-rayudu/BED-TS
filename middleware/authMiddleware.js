@@ -1,3 +1,4 @@
+const jwt =require("jsonwebtoken")
 function auth(req, res, next) {
     const authHeader = req.headers.authorization;
 
@@ -6,17 +7,22 @@ function auth(req, res, next) {
             message: "Token Missing"
         });
     }
+    try{
+        const token = authHeader.split(" ")[1]
+        console.log("token",token)
+        const decoded =jwt.verify(token,process.env.JWT_SECRET)
+        console.log("decoded",decoded)
 
-    const token = authHeader.split(" ")[1];
-    console.log("Token:", token);
-
-    if (token !== "student-secret-token") {
-        return res.status(401).json({
-            message: "Invalid Token"
-        });
+        req.user=decoded;
+        next();
+    }
+    catch(error){
+        res.status(401).json({
+            message:"Invalid token"
+        })
     }
 
-    next();
+    
 }
 
 module.exports = auth;

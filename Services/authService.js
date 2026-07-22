@@ -1,14 +1,22 @@
+const jwt = require("jsonwebtoken")
 function loginService(username,password){
 
-    const user ={
+   const user ={
         username:"Teja",
         password:"1234"
     };
     if(username === user.username && password === user.password){
-        return{
-            success:true ,
-            token:"student-secret-token"
-        };
+        const token = jwt.sign({
+            id:1,
+            username:"Teja"
+        },
+       process.env.JWT_SECRET,
+        {expiresIn :"7d"}
+    );
+    return{
+        success:true,
+        token
+    };
     }
     return{
         success:false,
