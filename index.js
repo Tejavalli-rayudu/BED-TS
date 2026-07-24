@@ -1,20 +1,41 @@
 const express = require("express");
-require("dotenv").config()
-
 const app = express();
 
-app.use(express.json());
+const db = require("./config/db");
 
 const studentRoutes = require("./Routes/studentRoutes");
 const empRoutes = require("./Routes/empRoutes");
-const authRoutes = require("./Routes/authRoutes")
+const authRoutes = require("./Routes/authRoutes");
+
+app.use(express.json());
 
 app.use("/students", studentRoutes);
 app.use("/employees", empRoutes);
 app.use("/auth", authRoutes);
 
-app.get("/", (req, res) => {
-    res.send("Server Running Successfully");
+// Check Database Connection
+app.get("/", async (req, res) => {
+
+    try {
+
+        const [rows] = await db.query("SELECT 1 AS message");
+
+        res.json({
+            success: true,
+            message: "Database Connected Successfully",
+            data: rows
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: "Database Connection Failed",
+            error: error.message
+        });
+
+    }
+
 });
 
 app.listen(3000, () => {
